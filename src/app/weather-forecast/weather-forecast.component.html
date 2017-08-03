@@ -1,0 +1,43 @@
+<router-outlet></router-outlet>
+<div class=form-group>
+  <div>
+    <label>Please enter your City:</label>
+    <input [(ngModel)]="cityOwn" placeholder="name" />
+    <label>Choose period:</label>
+    <input [(ngModel)]="daysNumber"/>
+    <button (click)="getWeather()">Get Forecast</button>
+  </div>   
+
+  <ul class="city-list">
+    <li *ngFor="let city of savedCities">
+      <a (click)="choose(city.CityName)" href="javascript:void(0)">
+{{city.CityName}}
+      </a>
+    </li>
+  </ul>
+
+  <div *ngIf="weatherResponse" class="wrapper row">
+<h2 > Weather Forecast for city:  {{weatherResponse.city.name}} {{weatherResponse.city.country}} 
+  for {{weatherResponse.cnt}} days  </h2>
+
+  <table class="weatherTable">
+     <tr>
+       <th></th>
+       <th>Date: </th>
+       <th>Day temperature: </th>
+       <th>Morning temperature: </th>
+       <th>Night temperature:  </th>
+       <th>Humidity:  </th>
+       <th>Wind Speed:  </th>
+     </tr>
+     <tr *ngFor="let weatherDay of weatherResponse.list ">
+        <th><img [src]='"/assets/Icons/" + weatherDay.weather[0].icon +".png"'/></th>
+        <th>{{weatherDay.dt*1000 | date:'yMd'}} </th>
+        <th>{{weatherDay.temp.day}}</th>
+        <th>{{weatherDay.temp.morn}} </th>
+        <th>{{weatherDay.temp.night}}  </th>
+        <th> {{weatherDay.humidity}} </th>
+        <th>{{weatherDay.speed}} </th>
+     </tr>
+  </table>
+  </div>

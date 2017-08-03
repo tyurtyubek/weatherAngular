@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="city-title">
+      <h4>Favorite cities</h4>
+    </div>
+  </div>
+  
+  <div class="row">
+      <div>
+          <div *ngFor="let city of savedCities">
+              <label>City id: {{city.Id}}</label>
+              <input value="{{city.CityName}}">
+              <button (click)="editCity(city)">Edit</button>
+              <button (click)="deleteCity(city.Id)">Remove</button>
+          </div>
+      </div>
+      <div>
+        <h4> Add city if you u want </h4>
+        <input value="{{cityString}}">
+        <button (click)="addCity()">Add city</button>
+      </div>
+  </div>

@@ -1,0 +1,17 @@
+  <h4> History of your browsing weather<h4>
+       
+    <table>
+        <thead>
+          <tr>
+              <th>City</th>
+              <th>Search Time</th>
+          </tr>
+        </thead>
+        <tr *ngFor = "let request of historySearch">
+            <td>{{request.CityName}}</td>
+            <td>{{request.RequestTime | date:'yMdjm'}}</td>
+        </tr>
+    </table>
+    <button (click)= "deleteAllHistory()"> Delete All History </button>
+
+<router-outlet></router-outlet>
